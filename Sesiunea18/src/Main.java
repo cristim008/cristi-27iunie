@@ -1,15 +1,36 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        List<Integer> myList=new ArrayList<>();
+        myList.add(1);
+        myList.add(2);
+        myList.add(3);
+        Consumer<List<Integer>> integerList=(L) ->{
+            for(Integer i: L){
+                System.out.println(i);
+            }
+        };
+        integerList.accept(myList);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Random random=new Random();
+        Supplier<Integer> randomInteger=() -> random.nextInt(100);
+        System.out.println("Random number :" +randomInteger.get());
+
+
+        Predicate<String> predicate = (s) -> s != null && !s.isEmpty();
+
+        System.out.println(predicate.test("Hello world!"));
+        System.out.println(predicate.test(null));
+
+
     }
+
 }
